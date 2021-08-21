@@ -13,7 +13,7 @@
 
         const currentCity = [
 
-            { city: "Bogura", longt: 89.3571953 },
+            { city: "Bogura", longt: 24.862408199999997 },
             { city: "Natore", longt: 24.420556 },
             { city: "Cumilla", longt: 23.4682747 },
 
@@ -33,9 +33,9 @@
         function showPosition(position) {
             for (let i = 0; i < currentCity.length; i++) {
                 const element = currentCity[i];
-                if (element.longt === position.coords.longitude) {
+                if (element.longt === position.coords.latitude) {
                     const x = console.log(element.city);
-                    document.getElementById("location").innerHTML = element.city;
+                    document.getElementById("location").innerHTML = element.city + " --Latitude "+ position.coords.latitude;
                 }
             }
             
