@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Geolocation API</title>
+</head>
+
+<body>
+    <h1>Find your Current location</h1>
+    <!-- <button onclick="getlocation()">Click me</button> -->
+    <div id="location"></div>
+    <script>
+
+        const currentCity = [
+
+            { city: "Bogura", longt: 89.3571953 },
+            { city: "Natore", longt: 24.420556 },
+            { city: "Cumilla", longt: 23.4682747 },
+
+        ]
+
+
+        var x = document.getElementById("location");
+        function getlocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError)
+            }
+            else {
+                alert("Sorry! your browser is not supporting")
+            }
+        }
+        getlocation();
+        function showPosition(position) {
+            for (let i = 0; i < currentCity.length; i++) {
+                const element = currentCity[i];
+                if (element.longt === position.coords.longitude) {
+                    const x = console.log(element.city);
+                    document.getElementById("location").innerHTML = element.city;
+                }
+            }
+            
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation API.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("USer location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
